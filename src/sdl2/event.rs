@@ -90,8 +90,10 @@ impl ::EventSubsystem {
         }
     }
 
+}
+
     /// Pushes an event to the event queue.
-    pub fn push_event(&self, event: Event) -> SdlResult<()> {
+    pub fn push_event(event: Event) -> SdlResult<()> {
         match event.to_ll() {
             Some(mut raw_event) => {
                 let ok = unsafe { ll::SDL_PushEvent(&mut raw_event) == 1 };
@@ -103,8 +105,6 @@ impl ::EventSubsystem {
             }
         }
     }
-}
-
 /// Types of events that can be delivered.
 #[derive(Copy, Clone, Eq, PartialEq, Hash, Debug)]
 #[repr(u32)]
